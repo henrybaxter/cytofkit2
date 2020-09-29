@@ -16,7 +16,7 @@
 #' @return A matrix of the dimension reduced data, with colnames method_ID, and rownames same as the input data.
 #' 
 #' @importFrom vegan vegdist spantree isomap
-#' @importFrom Rtsne Rtsne
+#' @importFrom Rtsne.multicore Rtsne
 #' @importFrom destiny DiffusionMap
 #' @importFrom utils compareVersion packageVersion
 #' @import stats reticulate
@@ -90,7 +90,7 @@ cytof_dimReduction <- function(data,
                tsne_out <- Rtsne(marker_filtered_data, initial_dims = ncol(marker_filtered_data), 
                                  dims = 2, 
                                  check_duplicates = FALSE, 
-                                 pca = TRUE, ...)
+                                 pca = TRUE, num_threads=96, ...)
                mapped <- tsne_out$Y
            },
            pca={
