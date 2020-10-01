@@ -4,11 +4,19 @@
 \alias{cytof_progressionPlot}
 \title{Progression plot}
 \usage{
-cytof_progressionPlot(data, markers, clusters, orderCol = "isomap_1",
-  clusterCol = "cluster", reverseOrder = FALSE,
-  addClusterLabel = TRUE, clusterLabelSize = 5, segmentSize = 0.5,
+cytof_progressionPlot(
+  data,
+  markers,
+  clusters,
+  orderCol = "isomap_1",
+  clusterCol = "cluster",
+  reverseOrder = FALSE,
+  addClusterLabel = TRUE,
+  clusterLabelSize = 5,
+  segmentSize = 0.5,
   min_expr = NULL,
-  trend_formula = "expression ~ sm.ns(Pseudotime, df=3)")
+  trend_formula = "expression ~ sm.ns(Pseudotime, df=3)"
+)
 }
 \arguments{
 \item{data}{The data frame for progression plot.}
@@ -46,8 +54,8 @@ m3 <- c(rnorm(300, 16), rnorm(400, 40, 3), rnorm(300, 10))
 m4 <- c(rnorm(300, 7, 3), rnorm(400, 30, 2), rnorm(300, 10))
 m5 <- c(rnorm(300, 27), rnorm(400, 40, 1),rnorm(300, 10))
 c <- c(rep(1,300), rep(2,400), rep(3,300))
-rnames <- paste(paste('sample_', c('A','B','C','D'), sep = ''), 
-rep(1:250,each = 4), sep='_') 
+rnames <- paste(paste('sample_', c('A','B','C','D'), sep = ''),
+rep(1:250,each = 4), sep='_')
 exprs_cluster <- data.frame(cluster = c, m1 = m1, m2 = m2, m3 = m3, m4 = m4, isomap_1 = m5)
 row.names(exprs_cluster) <- sample(rnames, 1000)
 cytof_progressionPlot(exprs_cluster, markers = c("m1","m2","m3","m4"))

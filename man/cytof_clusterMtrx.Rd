@@ -20,7 +20,6 @@ A data table with marker expression values of cells in a given cluster
 Generate a matrix of expression values for cells in a cluster
 }
 \examples{
- 
 dir <- system.file('extdata',package='cytofkit2')
 file <- list.files(dir ,pattern='.RData$', full=TRUE)
 load(file)

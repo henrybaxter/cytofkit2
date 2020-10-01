@@ -4,12 +4,18 @@
 \alias{cytof_heatmap}
 \title{Heatmap plot of cluster mean value results}
 \usage{
-cytof_heatmap(data, baseName = "Cluster", scaleMethod = "none",
+cytof_heatmap(
+  data,
+  baseName = "Cluster",
+  scaleMethod = "none",
   dendrogram = c("both", "row", "column", "none"),
   colPalette = c("bluered", "greenred", "spectral1", "spectral2"),
-  cex_row_label = NULL, cex_col_label = NULL, key.par = list(mgp =
-  c(1.5, 0.5, 0), mar = c(3, 2.5, 3.5, 1)), keysize = 1.4,
-  margins = c(5, 5))
+  cex_row_label = NULL,
+  cex_col_label = NULL,
+  key.par = list(mgp = c(1.5, 0.5, 0), mar = c(3, 2.5, 3.5, 1)),
+  keysize = 1.4,
+  margins = c(5, 5)
+)
 }
 \arguments{
 \item{data}{A matrix with rownames and colnames}
@@ -45,8 +51,8 @@ m3 <- c(rnorm(300, 16), rnorm(400, 40, 3), rnorm(300, 10))
 m4 <- c(rnorm(300, 7, 3), rnorm(400, 30, 2), rnorm(300, 10))
 m5 <- c(rnorm(300, 27), rnorm(400, 40, 1),rnorm(300, 10))
 c <- c(rep(1,300), rep(2,400), rep(3,300))
-rnames <- paste(paste('sample_', c('A','B','C','D'), sep = ''), 
-rep(1:250,each = 4), sep='_') 
+rnames <- paste(paste('sample_', c('A','B','C','D'), sep = ''),
+rep(1:250,each = 4), sep='_')
 exprs_cluster <- data.frame(cluster = c, m1 = m1, m2 = m2, m3 = m3, m4 = m4, m5 = m5)
 row.names(exprs_cluster) <- sample(rnames, 1000)
 cluster_mean <- aggregate(. ~ cluster, data = exprs_cluster, mean)

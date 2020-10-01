@@ -4,10 +4,17 @@
 \alias{cytof_addToFCS}
 \title{Add data to the original FCS files}
 \usage{
-cytof_addToFCS(data, rawFCSdir, origSampNames = NULL, analyzedFCSdir,
+cytof_addToFCS(
+  data,
+  rawFCSdir,
+  origSampNames = NULL,
+  analyzedFCSdir,
   transformed_cols = c("tsne_1", "tsne_2"),
-  cluster_cols = c("cluster"), clusterIDs = NULL,
-  specifySampleNames = NULL, inLgclTrans = TRUE)
+  cluster_cols = c("cluster"),
+  clusterIDs = NULL,
+  specifySampleNames = NULL,
+  inLgclTrans = TRUE
+)
 }
 \arguments{
 \item{data}{The new data matrix to be added in.}
@@ -32,6 +39,6 @@ cytof_addToFCS(data, rawFCSdir, origSampNames = NULL, analyzedFCSdir,
 New fcs files stored under \code{analyzedFCSdir}
 }
 \description{
-Store the new dimension transformed data and cluster data into the exprs 
+Store the new dimension transformed data and cluster data into the exprs
 matrix in new fcs files under \code{analyzedFCSdir}
 }

@@ -4,8 +4,13 @@
 \alias{cytof_clusterStat}
 \title{Statistics of the cluster results}
 \usage{
-cytof_clusterStat(data, markers, cluster = "cluster", sample,
-  statMethod = c("mean", "median", "percentage", "NULL"))
+cytof_clusterStat(
+  data,
+  markers,
+  cluster = "cluster",
+  sample,
+  statMethod = c("mean", "median", "percentage", "NULL")
+)
 }
 \arguments{
 \item{data}{Input data frame.}
@@ -32,8 +37,8 @@ m3 <- c(rnorm(300, 16), rnorm(400, 40, 3), rnorm(300, 10))
 m4 <- c(rnorm(300, 7, 3), rnorm(400, 30, 2), rnorm(300, 10))
 m5 <- c(rnorm(300, 27), rnorm(400, 40, 1),rnorm(300, 10))
 c <- c(rep(1,300), rep(2,400), rep(3,300))
-rnames <- paste(paste('sample_', c('A','B','C','D'), sep = ''), 
-rep(1:250,each = 4), sep='_') 
+rnames <- paste(paste('sample_', c('A','B','C','D'), sep = ''),
+rep(1:250,each = 4), sep='_')
 exprs_cluster <- data.frame(cluster = c, m1 = m1, m2 = m2, m3 = m3, m4 = m4, m5 = m5)
 row.names(exprs_cluster) <- rnames
 cytof_clusterStat(data = exprs_cluster, cluster = "cluster", statMethod = "mean")

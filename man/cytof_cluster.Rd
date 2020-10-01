@@ -4,9 +4,15 @@
 \alias{cytof_cluster}
 \title{Subset detection by clustering}
 \usage{
-cytof_cluster(ydata = NULL, xdata = NULL, method = c("Rphenograph",
-  "ClusterX", "DensVM", "FlowSOM", "NULL"), Rphenograph_k = 30,
-  FlowSOM_k = 40, flowSeed = NULL)
+cytof_cluster(
+  ydata = NULL,
+  xdata = NULL,
+  method = c("Rphenograph", "ClusterX", "DensVM", "FlowSOM", "NULL"),
+  Rphenograph_k = 30,
+  FlowSOM_k = 40,
+  flowSeed = NULL,
+  multicore = TRUE
+)
 }
 \arguments{
 \item{ydata}{A matrix of the dimension reduced data.}

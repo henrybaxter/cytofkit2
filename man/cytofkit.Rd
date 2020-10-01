@@ -4,18 +4,30 @@
 \alias{cytofkit}
 \title{cytofkit: an integrated mass cytometry data analysis pipeline}
 \usage{
-cytofkit(fcsFiles = getwd(), markers = "parameter.txt",
-  projectName = "cytofkit", ifCompensation = FALSE,
-  transformMethod = c("autoLgcl", "cytofAsinh", "logicle", "arcsinh",
-  "none"), mergeMethod = c("ceil", "all", "min", "fixed"),
-  fixedNum = 10000, dimReductionMethod = c("umap", "tsne", "pca",
-  "isomap"), umap_neighbor = 30, umap_min_dist = 0.3,
-  clusterMethods = c("Rphenograph", "ClusterX", "DensVM", "FlowSOM",
-  "NULL"), visualizationMethods = c("umap", "tsne", "pca", "isomap",
-  "NULL"), progressionMethod = c("NULL", "diffusionmap", "isomap"),
-  Rphenograph_k = 30, FlowSOM_k = 40, seed = NULL,
-  clusterSampleSize = 500, resultDir = getwd(), saveResults = TRUE,
-  saveObject = TRUE, openShinyAPP = FALSE, ...)
+cytofkit(
+  fcsFiles = getwd(),
+  markers = "parameter.txt",
+  projectName = "cytofkit",
+  ifCompensation = FALSE,
+  transformMethod = c("autoLgcl", "cytofAsinh", "logicle", "arcsinh", "none"),
+  mergeMethod = c("ceil", "all", "min", "fixed"),
+  fixedNum = 10000,
+  dimReductionMethod = c("umap", "tsne", "pca", "isomap"),
+  umap_neighbor = 30,
+  umap_min_dist = 0.3,
+  clusterMethods = c("Rphenograph", "ClusterX", "DensVM", "FlowSOM", "NULL"),
+  visualizationMethods = c("umap", "tsne", "pca", "isomap", "NULL"),
+  progressionMethod = c("NULL", "diffusionmap", "isomap"),
+  Rphenograph_k = 30,
+  FlowSOM_k = 40,
+  seed = NULL,
+  clusterSampleSize = 500,
+  resultDir = getwd(),
+  saveResults = TRUE,
+  saveObject = TRUE,
+  openShinyAPP = FALSE,
+  ...
+)
 }
 \arguments{
 \item{fcsFiles}{It can be either the path where your FCS files are stored or a vector of FCS file names.}

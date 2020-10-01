@@ -4,7 +4,7 @@
 \alias{Rphenograph}
 \title{RphenoGraph clustering}
 \usage{
-Rphenograph(data, k = 30)
+Rphenograph(data, k = 30, multicore = TRUE)
 }
 \arguments{
 \item{data}{Input data matrix.}

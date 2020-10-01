@@ -27,7 +27,7 @@ cytof_cluster <- function(ydata = NULL,
                           method = c("Rphenograph", "ClusterX", "DensVM", "FlowSOM", "NULL"),
                           Rphenograph_k = 30,
                           FlowSOM_k = 40,
-                          flowSeed = NULL){
+                          flowSeed = NULL, multicore=TRUE){
     
     method = match.arg(method)
     if(method == "NULL"){
@@ -36,7 +36,7 @@ cytof_cluster <- function(ydata = NULL,
     switch(method, 
            Rphenograph = {
                cat("  Running PhenoGraph...")
-               clusters <- as.numeric(membership(Rphenograph(xdata, k=Rphenograph_k)))
+               clusters <- as.numeric(membership(Rphenograph(xdata, k=Rphenograph_k, multicore)))
            },
            ClusterX = {
                cat("  Running ClusterX...")

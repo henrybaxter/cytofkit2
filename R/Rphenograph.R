@@ -37,7 +37,7 @@
 #' iris_unique <- unique(iris) # Remove duplicates
 #' data <- as.matrix(iris_unique[,1:4])
 #' Rphenograph_out <- Rphenograph(data, k = 45)
-Rphenograph <- function(data, k=30){
+Rphenograph <- function(data, k=30, multicore=TRUE){
     if(is.data.frame(data))
         data <- as.matrix(data)
     
@@ -55,7 +55,7 @@ Rphenograph <- function(data, k=30){
         "  -k is set to ", k)
     
     cat("  Finding nearest neighbors...")
-    t1 <- system.time(neighborMatrix <- find_neighbors(data, k=k+1)[,-1])
+    t1 <- system.time(neighborMatrix <- find_neighbors(data, k=k+1, multicore)[,-1])
     cat("DONE ~",t1[3],"s\n", " Compute jaccard coefficient between nearest-neighbor sets...")
     t2 <- system.time(links <- jaccard_coeff(neighborMatrix))
 
@@ -98,7 +98,22 @@ Rphenograph <- function(data, k=30){
 #' @noRd
 #' 
 #' @importFrom RANN nn2
-find_neighbors <- function(data, k){
-    nearest <- nn2(data, data, k, treetype = "kd", searchtype = "standard")
+#' @importFrom RcppHNSW hnsw_knn
+find_neighbors <- function(data, k, multicore){
+    if(multicore) {
+        nearest <- hnsw_knn(data,
+            k,
+            distance = "euclidean",
+            M = 48, # higher is better but more memory
+            ef_construction = 400,
+            ef = 200,
+            verbose = FALSE,
+            progress = "bar",
+            n_threads = 96,
+            grain_size = 1
+        )
+    } else {
+        nearest <- nn2(data, data, k, treetype = "kd", searchtype = "standard")
+    }
     return(nearest[[1]])
 }

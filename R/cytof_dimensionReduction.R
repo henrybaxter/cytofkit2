@@ -12,11 +12,12 @@
 #' @param isomap_k Number of shortest dissimilarities retained for a point, parameter for \code{isomap} method.
 #' @param isomap_ndim Number of axes in metric scaling, parameter for \code{isomap} method.
 #' @param isomapFragmentOK What to do if dissimilarity matrix is fragmented, parameter for \code{isomap} method.
-#' @param ... Other parameters passed to the method, check \code{\link{Rtsne}}, \code{\link{DiffusionMap}}, \code{\link{isomap}}.
+#' @param ... Other parameters passed to the method, check \code{\link{Rtsne.multicore}}, \code{\link{DiffusionMap}}, \code{\link{isomap}}.
 #' @return A matrix of the dimension reduced data, with colnames method_ID, and rownames same as the input data.
 #' 
 #' @importFrom vegan vegdist spantree isomap
-#' @importFrom Rtsne.multicore Rtsne
+#' @importFrom Rtsne.multicore Rtsne.multicore
+#' @importFrom parallel detectCores
 #' @importFrom destiny DiffusionMap
 #' @importFrom utils compareVersion packageVersion
 #' @import stats reticulate
@@ -50,6 +51,14 @@ cytof_dimReduction <- function(data,
       if(is.character(markers)){
         right_marker <- markers %in% colnames(data)
         if(!all(right_marker)){
+          cat("\n Right marker positions: \n")
+          cat(right_marker)
+          cat("\n Incorrect/missing markers: \n")
+          cat(markers[!right_marker])
+          cat("\n Column names in data: \n")
+          cat(colnames(data))
+          cat("\n Markers requested: \n")
+          cat(markers)
           stop("\n Selected marker(s) is/are not in the input fcs files \n please check your selected marker(s)! \n")
         }else{
           marker_id <- markers
@@ -87,10 +96,10 @@ cytof_dimReduction <- function(data,
                cat("  Running t-SNE...with seed", tsneSeed)
                if(is.numeric(tsneSeed))
                    set.seed(tsneSeed) # Set a seed if you want reproducible results
-               tsne_out <- Rtsne(marker_filtered_data, initial_dims = ncol(marker_filtered_data), 
+               tsne_out <- Rtsne.multicore(marker_filtered_data, initial_dims = ncol(marker_filtered_data), 
                                  dims = 2, 
                                  check_duplicates = FALSE, 
-                                 pca = TRUE, num_threads=96, ...)
+                                 pca = TRUE, num_threads=detectCores(), ...)
                mapped <- tsne_out$Y
            },
            pca={

@@ -4,11 +4,20 @@
 \alias{cytof_dimReduction}
 \title{Dimension reduction for high dimension data}
 \usage{
-cytof_dimReduction(data, markers = NULL, method = c("umap", "tsne",
-  "pca", "isomap", "diffusionmap", "NULL"), distMethod = "euclidean",
-  out_dim = 2, umap_neighbor = 30, umap_min_dist = 0.3,
-  tsneSeed = 42, isomap_k = 5, isomap_ndim = NULL,
-  isomapFragmentOK = TRUE, ...)
+cytof_dimReduction(
+  data,
+  markers = NULL,
+  method = c("umap", "tsne", "pca", "isomap", "diffusionmap", "NULL"),
+  distMethod = "euclidean",
+  out_dim = 2,
+  umap_neighbor = 30,
+  umap_min_dist = 0.3,
+  tsneSeed = 42,
+  isomap_k = 5,
+  isomap_ndim = NULL,
+  isomapFragmentOK = TRUE,
+  ...
+)
 }
 \arguments{
 \item{data}{Input expression data matrix.}
@@ -29,7 +38,7 @@ cytof_dimReduction(data, markers = NULL, method = c("umap", "tsne",
 
 \item{isomapFragmentOK}{What to do if dissimilarity matrix is fragmented, parameter for \code{isomap} method.}
 
-\item{...}{Other parameters passed to the method, check \code{\link{Rtsne}}, \code{\link{DiffusionMap}}, \code{\link{isomap}}.}
+\item{...}{Other parameters passed to the method, check \code{\link{Rtsne.multicore}}, \code{\link{DiffusionMap}}, \code{\link{isomap}}.}
 }
 \value{
 A matrix of the dimension reduced data, with colnames method_ID, and rownames same as the input data.

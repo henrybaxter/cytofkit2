@@ -4,10 +4,22 @@
 \alias{cytof_clusterPlot}
 \title{Scatter plot of the cluster results}
 \usage{
-cytof_clusterPlot(data, xlab, ylab, cluster, sample, title = "cluster",
-  type = 1, point_size = NULL, addLabel = TRUE, labelSize = 10,
-  sampleLabel = TRUE, labelRepel = FALSE, fixCoord = TRUE,
-  clusterColor)
+cytof_clusterPlot(
+  data,
+  xlab,
+  ylab,
+  cluster,
+  sample,
+  title = "cluster",
+  type = 1,
+  point_size = NULL,
+  addLabel = TRUE,
+  labelSize = 10,
+  sampleLabel = FALSE,
+  labelRepel = FALSE,
+  fixCoord = TRUE,
+  clusterColor
+)
 }
 \arguments{
 \item{data}{The data frame of cluster results, which should contains at least xlab, ylab and cluster.}
@@ -42,14 +54,14 @@ cytof_clusterPlot(data, xlab, ylab, cluster, sample, title = "cluster",
 The ggplot object of the scatter cluster plot.
 }
 \description{
-Dot plot visualization of the cluster results, with color indicating different clusters, 
+Dot plot visualization of the cluster results, with color indicating different clusters,
 and shape of different samples.
 }
 \examples{
 x <- c(rnorm(100, mean = 1), rnorm(100, mean = 3), rnorm(100, mean = 9))
 y <- c(rnorm(100, mean = 2), rnorm(100, mean = 8), rnorm(100, mean = 5))
 c <- c(rep(1,100), rep(2,100), rep(3,100))
-rnames <- paste(paste('sample_', c('A','B','C'), sep = ''), rep(1:100,each = 3), sep='_') 
+rnames <- paste(paste('sample_', c('A','B','C'), sep = ''), rep(1:100,each = 3), sep='_')
 data <- data.frame(dim1 = x, dim2 = y, cluster = c)
 rownames(data) <- rnames
 data$sample <- "data"

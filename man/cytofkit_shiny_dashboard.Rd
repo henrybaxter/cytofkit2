@@ -11,6 +11,9 @@ cytofkit_shiny_dashboard(onServer = F, port = NULL)
 
 \item{onSever}{Whether the app is running on a server.}
 }
+\value{
+
+}
 \description{
 Title
 }
