@@ -16,8 +16,7 @@
 #' @return A matrix of the dimension reduced data, with colnames method_ID, and rownames same as the input data.
 #' 
 #' @importFrom vegan vegdist spantree isomap
-#' @importFrom Rtsne.multicore Rtsne.multicore
-#' @importFrom parallel detectCores
+#' @importFrom Rtsne Rtsne
 #' @importFrom destiny DiffusionMap
 #' @importFrom utils compareVersion packageVersion
 #' @import stats reticulate
@@ -96,10 +95,10 @@ cytof_dimReduction <- function(data,
                cat("  Running t-SNE...with seed", tsneSeed)
                if(is.numeric(tsneSeed))
                    set.seed(tsneSeed) # Set a seed if you want reproducible results
-               tsne_out <- Rtsne.multicore(marker_filtered_data, initial_dims = ncol(marker_filtered_data), 
+               tsne_out <- Rtsne(marker_filtered_data, initial_dims = ncol(marker_filtered_data), 
                                  dims = 2, 
                                  check_duplicates = FALSE, 
-                                 pca = TRUE, num_threads=detectCores(), ...)
+                                 pca = TRUE, num_threads=0, ...) # use all available cores
                mapped <- tsne_out$Y
            },
            pca={
