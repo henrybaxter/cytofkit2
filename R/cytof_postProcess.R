@@ -80,10 +80,13 @@ cytof_writeResults <- function(analysis_results,
 
   ## save analysis results to RData files
   if (saveToRData) {
-    objFile <- paste0(projectName, ".RData")
+    isodatetime = format(Sys.time(), "%Y-%m-%dT%H:%M:%S%z")
+    objFile <- paste0(projectName, "_", isodatetime, ".RData")
     save(analysis_results, file = objFile)
     cat("R object is saved in ", objFile, "\n")
-    objFile <- paste0('/home/ubuntu/results/', projectName, ".RData")
+    mainDir <- "~/results"
+    dir.create(mainDir)
+    objFile <- file.path(mainDir, objFile)
     save(analysis_results, file = objFile)
     cat("R object is saved in ", objFile, "\n")
     message("  **THIS R OBJECT IS THE INPUT OF SHINY APP!**  ")
